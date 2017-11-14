@@ -100,6 +100,7 @@ public class NotesListActivity extends AppCompatActivity {
     @Override
     protected void onDestroy() {
         super.onDestroy();
+        NotesRepoWrapper.getInstance().closeRealm();
         if (mUnbinder != null) {
             mUnbinder.unbind();
         }

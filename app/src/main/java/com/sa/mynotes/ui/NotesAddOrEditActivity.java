@@ -5,6 +5,7 @@ import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
 import android.text.TextUtils;
 import android.widget.EditText;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.sa.mynotes.R;
@@ -32,9 +33,12 @@ public class NotesAddOrEditActivity extends AppCompatActivity {
     public static final String LAUNCH_MODE = "LAUNCH_MODE";
     private static final String DISPLAY_DATE_FORMAT = "yyyy/MM/dd";
 
-    private int mLaunchMode;
-    private Note mNoteData;
-    private Unbinder mUnBinder;
+    @BindView(R.id.notes_edit_text)
+    EditText mNotesEditText;
+
+    @BindView(R.id.notes_label)
+    TextView mNotesLabel;
+
 
     @OnClick(R.id.submit_button_view)
     public void onSubmitButtonClick() {
@@ -46,13 +50,15 @@ public class NotesAddOrEditActivity extends AppCompatActivity {
         finish();
     }
 
-    @BindView(R.id.notes_edit_text)
-    EditText mNotesEditText;
-
     @OnClick(R.id.back_button_view)
     public void onBackButtonClicked() {
         finish();
     }
+
+    private int mLaunchMode;
+    private Note mNoteData;
+    private Unbinder mUnBinder;
+
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -68,6 +74,9 @@ public class NotesAddOrEditActivity extends AppCompatActivity {
             mNoteData = Parcels.unwrap(getIntent().getParcelableExtra(NOTES_DATA));
             mNotesEditText.setText(mNoteData.getDescription());
             mNotesEditText.setSelection(mNotesEditText.getText().length());
+            mNotesLabel.setText(getString(R.string.edit_note_label));
+        } else {
+            mNotesLabel.setText(getString(R.string.new_note_label));
         }
     }
 

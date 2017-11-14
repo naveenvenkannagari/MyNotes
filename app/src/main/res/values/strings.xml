@@ -5,4 +5,6 @@
     <string name="no_notes_availble_message">No notes available as of now</string>
     <string name="notes_validation_message">Please enter notes to proceed</string>
     <string name="note_label">Note</string>
+    <string name="new_note_label">New Note</string>
+    <string name="edit_note_label">Edit Note</string>
 </resources>

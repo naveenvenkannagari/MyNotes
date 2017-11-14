@@ -16,7 +16,7 @@
         android:layout_marginBottom="@dimen/margin_10dp"
         android:layout_marginTop="@dimen/margin_10dp"
         android:text="@string/notes_label"
-        android:textColor="@android:color/darker_gray"
+        android:textColor="@android:color/black"
         android:textSize="@dimen/notes_label_text_size" />
 
     <android.support.v7.widget.RecyclerView

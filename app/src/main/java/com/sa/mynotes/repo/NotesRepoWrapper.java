@@ -23,9 +23,7 @@ public class NotesRepoWrapper {
     }
 
     public static NotesRepoWrapper getInstance() {
-        if (instance == null) {
-            instance = new NotesRepoWrapper();
-        }
+        instance = new NotesRepoWrapper();
         return instance;
     }
 
@@ -35,6 +33,7 @@ public class NotesRepoWrapper {
      */
     public List<Note> getNotesList() {
         List<Note> list = new ArrayList<>();
+        mRealm.beginTransaction();
         try {
             RealmResults<Note> results = mRealm
                     .where(Note.class)
@@ -43,6 +42,7 @@ public class NotesRepoWrapper {
         } catch (Exception e) {
             e.printStackTrace();
         }
+        mRealm.commitTransaction();
         return list;
     }
 
@@ -58,6 +58,9 @@ public class NotesRepoWrapper {
         mRealm.beginTransaction();
         mRealm.copyToRealmOrUpdate(note);
         mRealm.commitTransaction();
+    }
+
+    public void closeRealm() {
         mRealm.close();
     }
 
